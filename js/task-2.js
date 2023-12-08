@@ -1,23 +1,21 @@
-class Storage{
-    #items;
-
-    constructor(baseItems) {
-        this.#items = baseItems;
+class Storage {
+  #items;
+  constructor(items = []) {
+    this.#items = items;
+  }
+  getItems() {
+    return this.#items;
+  }
+  addItem(newItem) {
+    this.#items.push(newItem);
+  }
+  removeItem(itemToRemove) {
+    const index = this.#items.indexOf(itemToRemove);
+    if (index === -1) {
+      return;
     }
-
-    getItems() {
-        return this.#items;
-    }
-
-    addItem(newItem) {
-        this.#items.push(newItem);
-    }
-
-    removeItem(itemToRemove) {
-        if (this.#items.indexOf(itemToRemove) >= 0) {
-            this.#items.splice(this.#items.indexOf(itemToRemove), 1);
-        }
-    }
+    return this.#items.splice(index, 1);
+  }
 }
 
 const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
